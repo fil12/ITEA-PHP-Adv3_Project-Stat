@@ -1,6 +1,6 @@
 {
   "name": "greeflas/php-project-stat",
-  "description": "",
+  "description": "Simple CLI tool that provides different information about PHP project.",
   "type": "project",
   "license": "BSD-3-Clause",
   "authors": [

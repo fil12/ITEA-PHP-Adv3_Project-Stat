@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<HEADER
-This file is part of the "default-project" package.
+This file is part of the "PHP Project Stat" project.
 
 (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
 

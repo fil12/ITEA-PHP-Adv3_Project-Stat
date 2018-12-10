@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+use App\ClassAuthorStatisticCommand;
+use Symfony\Component\Console\Application;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$application = new Application('PHP Project Statistic');
+
+$analyzer = new \App\Author\ClassAuthorAnalyzer(
+        __DIR__ . '/../src',
+        'App'
+);
+$application->add(new ClassAuthorStatisticCommand($analyzer));
+
+$exitCode = $application->run();
+exit($exitCode);
