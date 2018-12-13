@@ -39,8 +39,7 @@ final class ClassAuthorAnalyzer
         $finder
             ->in($this->rootDir)
             ->files()
-            ->name('/^[A-Z].+\.php$/')
-        ;
+            ->name('/^[A-Z].+\.php$/');
 
         foreach ($finder as $file) {
             $path = $file->getRelativePathname();

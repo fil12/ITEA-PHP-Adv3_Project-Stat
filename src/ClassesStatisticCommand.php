@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Author;
+namespace App;
 
 use App\Author\ClassAuthorAnalyzer;
+use App\Analyzers\ClassesAnalyzer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -26,14 +27,14 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-final class ClassAuthorStatisticCommand extends Command
+final class ClassesStatisticCommand extends Command
 {
     private $analyzer;
 
     /**
      * {@inheritdoc}
      */
-    public function __construct(ClassAuthorAnalyzer $analyzer, string $name = null)
+    public function __construct(ClassesAnalyzer $analyzer, string $name = null)
     {
         $this->analyzer = $analyzer;
 
@@ -46,12 +47,12 @@ final class ClassAuthorStatisticCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('stat:class-author')
-            ->setDescription('Shows statistic about classes that was created by needed developer')
+            ->setName('stat:class')
+            ->setDescription('Shows statistic about classes')
             ->addArgument(
-                'email',
+                'className',
                 InputArgument::REQUIRED,
-                'Email of needed developer'
+                'Name of needed class'
             );
     }
 
@@ -60,12 +61,11 @@ final class ClassAuthorStatisticCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $email = $input->getArgument('email');
+        $className = $input->getArgument('className');
 
-        $number = $this->analyzer->analyze($email);
+        $data = $this->analyzer->analyze($className);
 
         $output->writeln(
-            \sprintf('Developer with email %s was created %d classes', $email, $number)
-        );
+            $data);
     }
 }
